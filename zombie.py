@@ -165,3 +165,4 @@ class Zombie:
         chase_or_run = Selector('추적, 도망, 배회 선택', chase_boy, run_away_from_boy, wander)
 
         self.bt = BehaviorTree(chase_or_run)
+        
