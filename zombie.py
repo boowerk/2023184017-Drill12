@@ -119,12 +119,16 @@ class Zombie:
         else:
             return BehaviorTree.RUNNING
 
-
     def get_patrol_location(self):
         self.tx, self.ty = self.patrol_locations[self.loc_no]
         self.loc_no = (self.loc_no + 1) % len(self.patrol_locations)
         return BehaviorTree.SUCCESS
 
+    def boy_ball_less_than(self):
+        pass
+
+    def zombie_ball_less_than(self):
+        pass
 
     def build_behavior_tree(self):
         a1 = Action('Set target location', self.set_target_location, 1000, 1000)
@@ -139,8 +143,5 @@ class Zombie:
         root = chase_boy = Sequence('소년을 추적', c1, a4)
 
         root = chase_or_flee = Selector('추적 또는 배회', chase_boy, wander)
-
-        a5 = Action('순찰 위치 가져오기', self.get_patrol_location)
-        root = patrol = Sequence('순찰', a5, a2)
         self.bt = BehaviorTree(root)
         pass
