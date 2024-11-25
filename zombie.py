@@ -125,10 +125,16 @@ class Zombie:
         return BehaviorTree.SUCCESS
 
     def boy_ball_less_than(self):
-        pass
+        if self.ball_count > play_mode.boy.ball_count:
+            return BehaviorTree.SUCCESS
+        else:
+            return BehaviorTree.FAIL
 
     def zombie_ball_less_than(self):
-        pass
+        if self.ball_count < play_mode.boy.ball_count:
+            return BehaviorTree.SUCCESS
+        else:
+            return BehaviorTree.FAIL
 
     def build_behavior_tree(self):
         a1 = Action('Set target location', self.set_target_location, 1000, 1000)
